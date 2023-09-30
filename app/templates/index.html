@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Математический пример</title>
+    <style>
+        /* Стили остаются без изменений */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+        }
+
+        .form-container p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if not visited %}
+        <div class="form-container">
+            <h1>Задание</h1>
+            <p>Добро пожаловать в "Математический Челлендж" - увлекательный способ проверить и улучшить свои математические навыки! Мы предоставляем вам серию математических задач, которые вы можете решать и зарабатывать баллы. Ваша цель - набрать как можно больше баллов, доказывая свои навыки в математике.</p>
+            <h2>Правила:</h2>
+            <ul>
+                <li>За правильные ответы вы зарабатываете баллы и увеличиваете свой рейтинг.</li>
+                <li>Однако за неправильные ответы баллы могут уменьшаться, так что будьте внимательны!</li>
+                <li>Ваш счет сохраняется в течение сеанса, так что вы можете соревноваться с собой или другими пользователями.</li>
+            </ul>
+            <h2>Особенности сервиса:</h2>
+            <p>Если ваш счет превысит 10 000 баллов, вы разблокируете секретный текст!<br/>Удачи в решении задач и покажите, на что вы способны!</p>
+
+        </div>
+        <br/>
+        {% endif %}
+        <div class="form-container">
+            <h1>Решите математический пример:</h1>
+            <form method="POST">
+                <p>{{ math_problem }}</p>
+                <label for="answer">Ваш ответ:</label>
+                <input type="text" name="answer" id="answer" required>
+                <input type="submit" value="Проверить">
+            </form>
+            <br/>
+            <p>Правильных ответов: {{ score }}</p>
+            <br/>
+            <form method="POST" action="/reset">
+                <input type="submit" value="Сбросить счет">
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript для фокуса на поле ввода -->
+    <script>
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            const isAlphaNumeric = /^[a-zA-Z0-9!@#$%^&*()_+[\]{}|;:'",.<>?`~\-\\/]$/.test(key);
+
+            // Проверяем, что нажата клавиша с буквой или цифрой или спец. символом
+            if (isAlphaNumeric) {
+                // Устанавливаем фокус на поле ввода с id="answer"
+                document.getElementById('answer').focus();
+            }
+        });
+    </script>
+</body>
+</html>
