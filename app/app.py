@@ -11,7 +11,7 @@ app.config['SESSION_TYPE'] = 'filesystem'  # Используем файлову
 app.config['SESSION_PERMANENT'] = False  # Сессия не сохраняется между запросами
 Session(app)
 
-SECRET_TEXT = "123123123"
+SECRET_TEXT = "ZmxhZ3tlZHVjYXRpb25hbF9wcmFjdGljZV8xX3NlbWVzdGVyfQ=="
 complexity = 3
 
 # Генерация случайного математического примера
